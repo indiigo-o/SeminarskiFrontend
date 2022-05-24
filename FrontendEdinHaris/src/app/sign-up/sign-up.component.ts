@@ -69,7 +69,16 @@ export class SignUpComponent implements OnInit {
         alert("uspjesna Registracija");
 
         localStorage.setItem("autentifikacija-token",x.vrijednost);
-
+ let mail={
+        emailToId: this.Korisnik.email,
+        emailToName: this.Korisnik.ime +" "+ this.Korisnik.prezime,
+        emailSubject: "Uspjesno ste se registrovali",
+        emailBody: "Postovani, upravo ste izvrsili registraciju na nas sajt."
+       }
+       this.httpKlijent.post<LoginInformacije>("https://localhost:44308/Email", mail) .subscribe(x=>{
+        console.log("Mail", x);
+    
+      });
         this.router.navigateByUrl("/login");
 
 
