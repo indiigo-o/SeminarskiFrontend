@@ -70,12 +70,12 @@ export class SignUpComponent implements OnInit {
 
         localStorage.setItem("autentifikacija-token",x.vrijednost);
  let mail={
-        emailToId: this.Korisnik.email,
-        emailToName: this.Korisnik.ime +" "+ this.Korisnik.prezime,
+        emailToId: this.txtEmail,
+        emailToName: this.txtIme +" "+ this.txtPrezime,
         emailSubject: "Uspjesno ste se registrovali",
         emailBody: "Postovani, upravo ste izvrsili registraciju na nas sajt."
        }
-       this.httpKlijent.post<LoginInformacije>("https://localhost:44308/Email", mail) .subscribe(x=>{
+       this.httpKlijent.post("https://localhost:44308/Email", mail) .subscribe(x=>{
         console.log("Mail", x);
     
       });
