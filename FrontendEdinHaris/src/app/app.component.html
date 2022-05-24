@@ -1,0 +1,46 @@
+<div >
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/homepage">HomePage</a>
+  </li>
+ 
+  <div class="btn-group">
+    <button type="button" class="btn  dropdown-toggle" style="color:white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Kategorije
+    </button>
+    <div class="dropdown-menu">
+      <a *ngFor="let s of Kategorije" class="dropdown-item" href="categories/{{s.id}}">{{s.ime}}</a>
+    </div>
+  </div>
+  <div class="btn-group" *ngIf="isLog===true">
+    <button type="button" class="btn  dropdown-toggle" style="color:white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Profil
+    </button>
+    <div  class="dropdown-menu">
+
+      <a class="dropdown-item" routerLink="/poruke">Poruke</a>
+      <a class="dropdown-item" routerLink="/edit-profile">Uredi račun</a>
+      <a class="dropdown-item" routerLink="/reset-password">Promjeni lozinku</a>
+      <a class="dropdown-item" routerLink="/Objava">Objavi artikal</a>
+      <a class="dropdown-item" routerLink="/moje-objave">Objave</a>
+
+    </div>
+  </div>
+
+    <li class="nav-item">
+      <a *ngIf="isLog===false" class="nav-link" routerLink="/signup">Sign-up</a>
+    </li>
+
+
+  <li class="nav-item">
+    <a class="nav-link" (click)="logout()" >{{isLog ? 'Logout' : 'Login'}}</a>
+  </li>
+</ul>
+</div>
+
+
+<div><router-outlet></router-outlet></div>
+
+
+
+

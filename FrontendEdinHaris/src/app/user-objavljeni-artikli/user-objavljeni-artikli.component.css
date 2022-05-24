@@ -1,0 +1,36 @@
+.artikal{
+    width: 100%;
+    justify-content:center;
+	box-shadow: 2px 2px 2px 2px #00695c;
+    margin: 1rem;
+}
+.artikli{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+}
+
+.btn{
+	transition: all .5s ease;
+	border-radius: 30px;
+	color:red;
+	font-weight: 600;
+	background-color: #fff;
+	border: 1px solid red;
+	margin-top: 1em;
+	margin-bottom: 1em;
+    
+}
+.btnu{
+	transition: all .5s ease;
+	border-radius: 30px;
+	color:#008080;
+	font-weight: 600;
+	background-color: #fff;
+	border: 1px solid #008080;
+	margin-top: 1em;
+	margin-bottom: 1em;
+    
+}

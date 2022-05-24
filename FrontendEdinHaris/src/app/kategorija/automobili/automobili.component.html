@@ -1,0 +1,13 @@
+
+<div class="products">
+  <div class="product" *ngFor="let product of Artikli">
+    <div  (click)="ProduktDetalji(product.id)" >
+      <img  class="product-image" src="{{product.slikaArtikla}}"  width="120" height="100">
+      <div  class="product-name"><h6> {{product.nazivArtikla}}</h6></div>
+      <div className="price Black"><p>Cijena: {{product.cijena}} KM</p></div>
+      </div>
+  </div>
+</div>
+
+
+

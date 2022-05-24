@@ -1,0 +1,127 @@
+
+
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Yinka Enoch Adedokun">
+	<title>Login Page</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+	<!-- Main Content -->
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
+				<h4 class="company_title">Xloxlo</h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h2>Registruj se</h2>
+					</div>
+					<div class="row">
+						<form  control="" class="form-group" >
+							<div class="row">
+								<input  [(ngModel)]="txtIme" #ime="ngModel" required type="text" name="ime" id="ime"  class="form2__input" placeholder="Ime">
+                <input  [(ngModel)]="txtPrezime" #prezime="ngModel" required type="text" name="prezime" id="prezime" class="form2__input" placeholder="Prezime">
+
+                <div *ngIf="ime.touched && ime.invalid || prezime.touched && prezime.invalid " class="alert-danger">
+                 Obavezno polje
+                </div>
+
+
+              </div>
+
+              <div class="row">
+								<input  [(ngModel)]="txtEmail"  #email="ngModel" required type="text" name="email" id="email" class="form__input" placeholder="Email">
+                <div *ngIf="email.touched && email.invalid" class="alert-danger">
+                  Obavezno polje
+                </div>
+							</div>
+							<div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								<input  [(ngModel)]="txtDatumRodjenja" #datum="ngModel" required type="date" name="datumRodjenja" id="datumRodjenja" class="form__input" placeholder="Datum Rodjenja">
+                <div *ngIf="datum.touched && datum.invalid" class="alert-danger">
+                  Obavezno polje
+                </div>
+							</div>
+	<div class="row">
+		<select  class="form-control"  name="code" size="1" [(ngModel)]="txtSpol">
+			<option value="undefined" disabled selected>
+				Odaberi spol
+			  </option>
+			<option *ngFor="let obj of Spolovi" name="txtSpol"
+
+			 [ngValue]="obj.id"
+
+			  ngDefaultControl>{{obj?.ime}}</option>
+
+			</select>
+							</div>
+							<br>
+
+              <div class="row">
+								<select #grad="ngModel" required class="form-control" id="select" name="code" size="1" [(ngModel)]="txtGrad">
+									<option value="undefined" disabled selected>
+										Odaberi grad
+									  </option>
+									<option *ngFor="let obj of Gradovi" name="txtGrad"
+
+									 [ngValue]="obj.id"
+
+									  ngDefaultControl>{{obj?.naziv}}
+                    <div *ngIf="grad.touched && grad.invalid" class="alert-danger">
+                      Obavezno polje
+                    </div></option>
+
+									</select>
+								<input  [(ngModel)]="txtAdresa"  #adresa="ngModel" required type="text" name="adresa" id="adresa" class="form__input" placeholder="Adresa">
+                <div *ngIf="adresa.touched && adresa.invalid" class="alert-danger">
+                  Obavezno polje
+                </div>
+							</div>
+							<div class="row">
+								<input  [(ngModel)]="txtBrojtelefona"  #brojtelefona="ngModel" required type="text" name="email" id="email" class="form__input" placeholder="Broj telefona">
+                <div *ngIf="brojtelefona.touched && brojtelefona.invalid" class="alert-danger">
+                  Obavezno polje
+                </div>
+							</div>
+
+              <div class="row">
+								<input  [(ngModel)]="txtKorisnickoIme"  #korisnickoime="ngModel" required type="text" name="username" id="username" class="form__input" placeholder="Username">
+                <div *ngIf="korisnickoime.touched && korisnickoime.invalid" class="alert-danger">
+                  Obavezno polje
+                </div>
+              </div>
+								<!-- <span class="fa fa-lock"></span> -->
+              <div class="row">
+								<input [type]="show ? 'text' : 'password'" [(ngModel)]="txtPassword" #sifra="ngModel" required    type="password" name="password" id="password" class="formpass__input" placeholder="Password">
+								<a class="fa fa-eye showhide"   (click)="password()"></a>
+                <div *ngIf="sifra.touched && sifra.invalid" class="alert-danger">
+                  Obavezno polje
+                </div>
+							</div>
+
+							<div class="row">
+                                <button (click)="btnLogin()" value="Prijava" class="btn">Registruj se</button>
+							</div>
+						</form>
+					</div>
+
+					<div class="row">
+						<p>Imate račun? <a routerLink="/login">Ulogujte se</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+
+
+

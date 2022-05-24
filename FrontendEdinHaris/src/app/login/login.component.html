@@ -1,0 +1,62 @@
+
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Yinka Enoch Adedokun">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Login Page</title>
+</head>
+<body>
+	<!-- Main Content -->
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
+				<h4 class="company_title">Xloxlo</h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h2>Prijavi se</h2>
+					</div>
+					<div class="row">
+						<form control="" class="form-group">
+							<div class="row">
+								<input  [(ngModel)]="txtKorisnickoIme" #email="ngModel" ng-model="txtKorisnickoIme" type="text" name="username" id="username" class="form__input" placeholder="Username"  required minlength="4">
+                <div *ngIf="email.touched && email.invalid" class="alert-danger">
+                  Obavezno polje
+                </div>
+							</div>
+							<div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								<input  [type]="show ? 'text' : 'password'" [(ngModel)]="txtPassword"  #sifra="ngModel" required type="password" name="password" class="formpass__input" placeholder="Password">
+                <div *ngIf="sifra.touched && sifra.invalid" class="alert-danger">
+                  Obavezno polje
+                </div>
+				
+								<a class="fa fa-eye showhide"(click)="password()"></a>
+							</div>
+							<div class="row">
+								<input type="checkbox" name="remember_me" id="remember_me" class="">
+								<label for="remember_me">Zapamti Me!</label>
+							</div>
+							<div class="row">
+
+                                <button (click)="btnLogin()" value="Prijava" class="btn">Prijava</button>
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<p>Nemate račun? <a routerLink="/signup">Registrujte se</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>

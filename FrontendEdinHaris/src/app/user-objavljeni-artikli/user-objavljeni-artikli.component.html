@@ -1,0 +1,96 @@
+<div class="artikli">
+    <div class="artikal" *ngFor="let artikal of Artikli let i=index">
+        <h3><b>Naziv:</b> {{artikal.nazivArtikla}}</h3>
+        <h3><b>Cijena:</b> {{artikal.cijena}} KM</h3>
+        <button (click)="UrediProizvod(i)" class="btnu">Uredi objavu</button>
+
+        <button (click)="IzbrisiProizvod(artikal.id)" class="btn">Ukloni objavu</button>
+
+    <div *ngIf="uredi[i]">
+        <div class="container">
+
+<form class="row g-3 " >
+  <div class="col-md-4">
+    <label for="Naziv" class="form-label">Naziv </label>
+
+    <input [(ngModel)]="artikal.nazivArtikla" type="text" class="form-control" [ngModelOptions]="{name: 'artikal.nazivArtikla'}" >
+
+  </div>
+  <div class="col-md-4">
+    <label for="Cijena" class="form-label">Cijena</label>
+
+    <input [(ngModel)]="artikal.cijena" type="text" class="form-control" [ngModelOptions]="{name: 'artikal.cijena'}">
+
+  </div>
+
+
+  <div class="col-md-3">
+    <label for="Grad" class="form-label">Grad</label>
+    <select [(ngModel)]="artikal.korisnik.grad.id" class="form-select" required [ngModelOptions]="{name: 'artikal.grad'}">
+      <option value="undefined" disabled selected>
+        {{artikal.korisnik.grad.naziv}}
+    </option>
+      <option *ngFor="let obj of Gradovi" name="txtGrad"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.naziv}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Kategorija" class="form-label">Kategorija</label>
+    <select [(ngModel)]="artikal.kategorija_Produkta_id" class="form-select"  name="Kategorija" id="Kategorija" required>
+      <option value="undefined" disabled selected>
+        Odaberi kategoriju
+      </option>
+      <option *ngFor="let obj of Kategorije" name="txtKategorija"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.ime}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Brend" class="form-label">Brend</label>
+    <select  [(ngModel)]="artikal.brend_id" class="form-select" name="Brend" id="Brend" required>
+      <option value="undefined" disabled selected>
+        Odaberi brend
+      </option>
+      <option *ngFor="let obj of Brendovi" name="txtBrend"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.ime}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Spol" class="form-label">Spol</label>
+    <select [(ngModel)]="artikal.spol_id" class="form-select" name="Spol"  id="Spol"  required>
+      <option value="undefined" disabled selected>
+        Odaberi Spol
+      </option>
+      <option *ngFor="let obj of Spolovi" name="txtSpol"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.ime}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Stanje" class="form-label">Stanje</label>
+    <select [(ngModel)]="artikal.stanje_id" class="form-select"  name="Stanje"  id="Stanje" required>
+      <option value="undefined" disabled selected>
+        Odaberi Stanje
+      </option>
+      <option *ngFor="let obj of Stanja" name="txtStanje"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.naziv}}</option>
+    </select>
+  </div>
+
+
+  <div class="col-12">
+    <button (click)="BtnUredi(artikal)" class="btnu btn-primary" type="submit">Uredi objavu</button>
+  </div>
+</form>
+
+</div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,55 @@
+
+<div class="ud-header">
+  <h2 class="text-center">Public Chat</h2>
+</div>
+<div class="ud-body">
+  <div class="msg-box">
+    <ul>
+      <li *ngFor="let mObj of msgInboxArray" [ngClass]="mObj.user === msgDto.user ? 'in-msg' : 'ex-msg'">{{mObj.user}} :<br /><span class="msg-italic-style">{{mObj.msgText}}</span></li>
+    </ul>
+  </div>
+  <div class="ud-flex-row">
+    <input type="text" placeholder="Type message here" class="msg-input" [(ngModel)]="msgDto.msgText"  />
+    <button class="send-btn" (click)= "send()"><i class="fa fa-paper-plane"></i></button>
+  </div>
+  <input type="text" placeholder="Your name" class="name-box" [(ngModel)]="msgDto.user" />
+</div>
+
+
+
+
+<br>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 col-md-6 col-12 pb-4">
+        <p>Poruke</p>
+        <div *ngFor="let s of primaoc " class="comment mt-4 text-justify float-left"> <img src="https://i.imgur.com/yTFUilP.jpg" alt="" class="rounded-circle" width="40" height="40">
+          <h4>{{s.korisnik.ime}} {{s.korisnik.prezime}}</h4>- <span>{{s.datum.slice(0,10)}}</span> <br>
+          <p>{{s.sadrzaj}}</p>
+        </div>
+        <div *ngFor="let s of posiljaoc"  class="text-justify darker mt-4 float-right"> <img src="https://i.imgur.com/CFpa3nK.jpg" alt="" class="rounded-circle" width="40" height="40">
+          <h4>{{s.korisnik.ime}} {{s.korisnik.prezime}}</h4> - <span>{{s.datum.slice(0,10)}}</span> <br>
+          <p>{{s.sadrzaj}}</p>
+        </div>
+
+      </div>
+      <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
+        <form id="algin-form">
+          <div class="form-group">
+            <h4>Napiši poruku</h4> <label for="">Poruka</label> <textarea [(ngModel)]="txtporuka"   name="msg" id="" msg cols="30" rows="5" class="form-control" style="background-color: #ffffff;"></textarea>
+          </div>
+
+          <div class="form-group"> <button  (click)="btnPosaljiPoruku()"  class="btn" id="post" type="button">Pošalji</button> </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+

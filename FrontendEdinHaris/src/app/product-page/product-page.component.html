@@ -1,0 +1,185 @@
+
+  <div *ngIf="isAdmin===true">Obrisi objavu</div>
+
+
+          <!-- Product section-->
+          <section class="py-5" >
+              <div class="container px-4 px-lg-5 my-5">
+                  <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div  class="col-md-6" href="#galleryModal" data-toggle="modal"> <div class="small mb-1">Klikom na sliku mozete pogledati ostale fotografije   artikla!</div><img class="card-img-top mb-5 mb-md-0" src="{{Artikal.slikaArtikla}}" alt="..." /></div>
+                    <div class="col-md-6">
+                   
+                          <div class="small mb-1">Kategorija: {{Artikal.kategorijaprodukta.ime}}</div>
+                          <h1 class="display-5 fw-bolder">{{Artikal.brend.ime}} {{Artikal.nazivArtikla}}</h1>
+                          <div class="fs-5 mb-5" >
+                            <h6 ><b>Datum objave: </b> {{Artikal.datumObjave.slice(0,10)}}</h6>
+                            <h6 ><b>Stanje: </b>{{Artikal.stanje.naziv}} </h6>
+                            <h6 ><b>Godište: </b> {{Artikal.godiste}}</h6>
+                            <h6 ><b>Kilometraža: </b> {{Artikal.kilometraza}}</h6>
+                            <h6 ><b *ngIf="Artikal.registrovan==true">Registrovan: &#x2714; </b> </h6>
+                            <h6 ><b *ngIf="Artikal.registrovan==false">Registrovan: &#x2716; </b> </h6>
+                            <h6 ><b *ngIf="Artikal.plin==true">Plin: &#x2714; </b> </h6>
+                            <h6 ><b *ngIf="Artikal.plin==false">Plin: &#x2716; </b> </h6>
+                            <h6 ><b *ngIf="Artikal.klima==true">Klima: &#x2714; </b> </h6>
+                            <h6 ><b *ngIf="Artikal.klima==false">Klima: &#x2716; </b> </h6>
+                            <h6 ><b *ngIf="Artikal.abs==true">Abs: &#x2714; </b> </h6>
+                            <h6 ><b *ngIf="Artikal.abs==false">Abs: &#x2716; </b> </h6>
+                            <h6 ><b>Gorivo: </b> {{Artikal.gorivo}} </h6>
+                            <h6 ><b>Model: </b> {{Artikal.model}} </h6>
+                              <span><b>Cijena:</b> {{Artikal.cijena}} KM</span>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+                <div class="container px-4 px-lg-5 my-5">
+                    <div class="row gx-4 gx-lg-5 " style="padding-bottom:20px; border:1px solid #2BBBAD">
+
+                        <div class="col-md-6">
+
+                          <p class="lead fw-bolder">Detaljan opis:</p>
+                          <p class="lead">{{Artikal.detaljanOpis}}</p>
+
+
+                        </div>
+                      <div class="col-md-6">
+                        <div class="mt-4 darker " > <img src="{{Artikal.korisnik.slikaProfila}}" alt="" class="rounded-circle" width="40" height="40">
+                          <span>  {{Artikal.korisnik.ime}} {{Artikal.korisnik.prezime}}</span> <br>
+                        </div>
+                       <br>
+                        <div class="d-flex">
+                          <a class="btn btn-primary btn-sm shadow-none" style="margin-right: 5px;"type="button" href="user-profile/{{Artikal.korisnik_id}}">
+                            Pogledaj profil vlasnika
+                          </a>
+                          <button class="btn btn-primary btn-sm shadow-none" type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                <i class="bi-cart-fill me-1"></i>
+                                Posalji poruku vlasniku
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+          </section>
+
+     <!-- comments-->
+
+        <div class="d-flex justify-content-center row" style="border-top:1px solid #2BBBAD">
+            <div class="col-md-8" >
+                <div class="d-flex flex-column comment-section" *ngFor="let k of Komentari" >
+                    <div class="bg-white p-2">
+                        <div class="d-flex flex-row user-info">
+                          <a href="user-profile/{{k.korisnik_id}}">
+
+                          <img  class="rounded-circle"  src="{{k.korisnik.slikaProfila}}" width="40"></a>
+                          <div class="d-flex flex-column justify-content-start ml-2">
+                         <a href="user-profile/{{k.korisnik_id}}" style="text-decoration: none;">
+                        <span class="d-block font-weight-bold name" >{{k.korisnik.ime}} {{k.korisnik.prezime}}</span>
+                      </a><span class="date text-black-50">Podjeljeno - {{k.datumVrijeme.substring(5,7)+ "."+k.datumVrijeme.substring(8,10)+"."+k.datumVrijeme.substring(0,4)+ "   " +k.datumVrijeme.substring(14,20)}}</span></div>
+                        </div>
+                        <div class="mt-2">
+                            <p class="comment-text">{{k.sadrzajKomentara}}</p>
+                        </div>
+                    </div>
+                    <div class="bg-white" >
+                        <div class="d-flex flex-row fs-12" style="float:right; color:red;">
+                            <div class="like p-2 cursor"><span *ngIf="k.korisnik.id===logirani" (click)="ObrisiObjavu(k.id)" class="ml-1">Obrisi komentar</span></div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="bg-light p-2" *ngIf="isLog===true">
+                      <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="{{Logirani.slikaProfila}}" width="40">
+                      <textarea id="tekstboks" [(ngModel)]="txtSadrzaj" [value]="txtSadrzaj" class="form-control ml-1 shadow-none textarea" [ngModelOptions]="{standalone: true}"></textarea></div>
+                      <div class="mt-2 text-right"><button (click)="DodajKomentar()" class="btn btn-primary btn-sm shadow-none" type="button">Objavi komentar</button>
+                        <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" (click)="Clear()" type="button" >Odustani</button></div>
+
+                    </div>
+                    <div class="bg-light p-2" *ngIf="isLog===false">
+                      <div class="mt-2 text-right"><a href="/login" class="btn btn-primary btn-sm shadow-none" type="button">Morate biti logirani da bi objavili komentar</a></div>
+
+                    </div>
+            </div>
+        </div>
+       
+
+       
+      
+      <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h3 class="text-center mb-0"></h3>
+                      <button type="button" class="close float-right" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true">&#xD7;</span>
+                      </button>
+                  </div>
+                  <div class="container">
+                    <div class="row py-3">            
+                        <div class="col-md-5 col-6 py-2" *ngFor="let s of SlikeArtikla">
+                                <img  src="{{s.imageName}}" class="img-fluid img-thumbnail">
+                        </div>
+                        
+                    </div>
+                </div>
+                  
+                  <div class="modal-footer">
+                      <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">OK</button>
+                  </div>
+              </div>
+          </div>
+      </div>    
+      
+
+    <!-- comments-->
+
+
+    <div  class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label  class="col-form-label">Pošalji poruku: {{Artikal.korisnik.ime}} {{Artikal.korisnik.prezime}}</label>
+
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Poruka:</label>
+                <textarea  [(ngModel)]="porukakorisniku" name="porukakorisniku" class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+            <button (click)="btnposalji()" class="btn btn-primary" type="button">Pošalji poruku</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <input type="file" multiple="multiple"  required name="slika" id="file" (change)="getFileDetails($event)">
+  <div class="buttons"> <button  (click)="dodajslike()"  class="btn btn-primary px-4 ms-3">Dodaj slike</button> </div>
+
+  <br>
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+
+
+
+
+
+
+
+      <!-- Bootstrap core JS-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- Core theme JS-->
+      <script src="js/scripts.js"></script>

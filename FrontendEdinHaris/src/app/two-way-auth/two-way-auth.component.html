@@ -1,0 +1,53 @@
+
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Yinka Enoch Adedokun">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Login Page</title>
+</head>
+<body>
+	<!-- Main Content -->
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
+				<h4 class="company_title">Xloxlo</h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h2>E-mail validacija</h2>
+					</div>
+					<div class="row">
+						<form control="" class="form-group">
+							<div class="row">
+								<input  [(ngModel)]="txtKod" #email="ngModel" ng-model="txtKorisnickoIme" type="text" name="username" id="username" class="form__input" placeholder="Unesite kod sa e-mail adrese"  required minlength="4">
+                <div *ngIf="email.touched && email.invalid" class="alert-danger">
+                  Obavezno polje
+                </div>
+							</div>
+							
+						
+							<div class="row">
+
+                                <button (click)="btnProvjera()" class="btn">Potvrdi</button>
+							</div>
+                            <div class="row">
+
+                                <a class="a" (click)="refresh()"  >Niste dobili mail? Kliknite ovdje!</a>
+							</div>
+						</form>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>

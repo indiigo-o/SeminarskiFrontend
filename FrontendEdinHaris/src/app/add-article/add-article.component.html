@@ -1,0 +1,139 @@
+
+<div class="container">
+
+<form class="row g-3 " >
+  <div class="col-md-4">
+    <label for="Naziv" class="form-label">Naziv </label>
+
+    <input [(ngModel)]="txtNaziv" #naziv="ngModel" required type="text" class="form-control" name="Naziv" id="Naziv" value="" >
+    <div *ngIf="naziv.touched && naziv.invalid" class="alert-danger">
+      Obavezno polje
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <label for="Cijena" class="form-label">Cijena</label>
+    <input [(ngModel)]="txtCijena" #cijena="ngModel" type="text" class="form-control" name="Cijena" id="Cijena" value="0.00KM" required>
+    <div *ngIf="cijena.touched && cijena.invalid" class="alert-danger">
+      Obavezno polje
+    </div>
+  </div>
+
+
+
+  <div class="col-md-3">
+    <label for="Kategorija" class="form-label">Kategorija</label>
+    <select [(ngModel)]="txtKategorija" #kategorija="ngModel" class="form-select"  name="Kategorija" id="Kategorija" required>
+      <div *ngIf="kategorija.touched && kategorija.invalid" class="alert-danger">
+        Obavezno polje
+      </div>
+      <option value="undefined" disabled selected>
+        Odaberi kategoriju
+      </option>
+      <option *ngFor="let obj of Kategorije" name="txtKategorija"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.ime}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Brend" class="form-label">Brend</label>
+    <select  [(ngModel)]="txtBrend" #brend="ngModel" class="form-select" name="Brend" id="Brend" required>
+      kategorija
+      <option value="undefined" disabled selected>
+        Odaberi brend
+      </option>
+      <option *ngFor="let obj of Brendovi" name="txtBrend"
+          [value]="obj.id"
+              ngDefaultControl>{{obj?.ime}}
+        <div *ngIf="brend.touched && brend.invalid" class="alert-danger">
+          Obavezno polje
+        </div>
+      </option>
+    </select>
+  </div>
+
+  <div class="col-md-3">
+    <label for="Stanje" class="form-label">Stanje</label>
+    <select [(ngModel)]="txtStanje"  class="form-select"  name="Stanje"  id="Stanje" required>
+      <option value="undefined" disabled selected>
+        Odaberi Stanje
+      </option>
+      <option *ngFor="let obj of Stanja" name="txtStanje"
+              [ngValue]="obj.id"
+              ngDefaultControl>{{obj?.naziv}}</option>
+    </select>
+  </div>
+
+  <div class="col-md-4">
+    <label for="Cijena" class="form-label">Godište</label>
+    <input [(ngModel)]="txtGodiste"  #godiste="ngModel" type="text" class="form-control" name="Godiste" id="Godiste" value="" required>
+    <div *ngIf="godiste.touched && godiste.invalid" class="alert-danger">
+      Obavezno polje
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="Cijena" class="form-label">Kilometraža</label>
+    <input [(ngModel)]="txtKilometraza" type="text" class="form-control" name="Kilometraža" id="Kilometraža" value="" required>
+  </div>
+
+  <div class="col-md-4">
+    <label for="txtGorivo" class="form-label">Gorivo</label>
+    <input [(ngModel)]="txtGorivo" type="text" class="form-control" name="txtGorivo" id="txtGorivo" value="Dizel/Benzin" required>
+  </div>
+
+  <div class="col-md-4">
+    <label for="txtModel" class="form-label">Model</label>
+    <input [(ngModel)]="txtModel" type="text" class="form-control" name="txtModel" id="txtModel" value="" required>
+  </div>
+
+
+    <div class="form-check">
+      <input (change)="registrovanchechbox($event)" class="form-check-input" type="checkbox"  id="saveUserNameCheckBox" >
+      <label class="form-check-label" for="saveUserNameCheckBox">
+        Registrovan
+      </label>
+    </div>
+
+  <div class="form-check">
+    <input  (change)="plinbox($event)" [(ngModel)]="plin" class="form-check-input" type="checkbox" value="" id="plin">
+    <label class="form-check-label" for="plin">
+      Plin
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input  (change)="klimabox($event)" [(ngModel)]="klima" class="form-check-input" type="checkbox" value="" id="klima">
+    <label class="form-check-label" for="klima">
+      Klima
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input  (change)="absbox($event)" [(ngModel)]="abs" class="form-check-input" type="checkbox" value="" id="abs">
+    <label class="form-check-label" for="abs">
+     ABS
+    </label>
+  </div>
+
+  <div class="form-group purple-border">
+    <label for="exampleFormControlTextarea4">Detaljni opis</label>
+    <textarea [(ngModel)]="txtDetaljanopis"  name="txtDetaljanopis" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+  </div>
+
+
+  <input type="file"   name="files" multiple  required name="slika" id="file" (change)="selectFile($event)">
+
+  <br>
+  <input type="button" value="Upload" (click)="upload()">
+  <ng-container *ngIf="res !=null">
+    <img src="{{res.slikaArtikla}}" width="120" height="100">
+  </ng-container>
+
+
+<div class="col-12">
+    <button (click)="BtnPosalji()" class="btn btn-primary" type="submit">Objavi</button>
+  </div>
+</form>
+
+</div>

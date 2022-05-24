@@ -1,0 +1,33 @@
+*{
+  font-family:Arial, Helvetica, sans-serif;
+  color:#353535;
+}
+
+
+.container-fluid text-center text-md-left{
+
+}
+.footer-copyright{
+  background-color:#2BBBAD ;
+}
+h5{
+  color :white;
+}
+li{
+  color :white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+p{
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+a{
+  color:white;
+}
+.nav{
+  background-color: #2BBBAD;
+}
+.dropdown-item
+{
+  color: black;
+}

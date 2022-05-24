@@ -1,0 +1,55 @@
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-3 py-4">
+                <div class="text-center"> <img src="{{Korisnik.slikaProfila}}" width="100" class="rounded-circle"> </div>
+                <div class="text-center mt-3">
+                 <span *ngIf="ifAdmin===true"  class="bg-secondary p-1 px-4 rounded text-white">Korisnik</span>
+                 <span *ngIf="ifAdmin===false"  class="bg-secondary p-1 px-4 rounded text-white">Admin</span>
+
+                    <h5 class="mt-2 mb-0">{{Korisnik.ime}} {{Korisnik.prezime}}</h5> <br>
+                    <span>{{Korisnik.kontaktTelefon}}</span><br>
+                    <span>{{Korisnik.email}}</span>
+
+                    <div class="px-4 mt-1">
+                        <p class="fonts">{{Korisnik.grad.naziv}} {{Korisnik.grad.postanskiBroj}}</p>
+                     
+
+                    </div>
+                   
+                    <div class="buttons"> <button class="btn btn-primary px-4 ms-3" data-toggle="modal"data-target="#exampleModal" data-whatever="@mdo">Posalji poruku</button> </div>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label  class="col-form-label">Pošalji poruku: {{Korisnik.ime}} {{Korisnik.prezime}}</label>
+                  
+                                </div>
+                                <div class="form-group">
+                                  <label for="message-text" class="col-form-label">Poruka:</label>
+                                  <textarea  [(ngModel)]="porukakorisniku" name="porukakorisniku" class="form-control" id="message-text"></textarea>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                              <button (click)="btnposalji()" class="btn btn-primary" type="button">Pošalji poruku</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
